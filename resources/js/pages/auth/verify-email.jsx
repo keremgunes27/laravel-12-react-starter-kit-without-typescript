@@ -15,23 +15,29 @@ export default function VerifyEmail({ status }) {
         post(route('verification.send'));
     };
 
-    return (<AuthLayout title="Verify email" description="Please verify your email address by clicking on the link we just emailed to you.">
-            <Head title="Email verification"/>
+    return (
+        <AuthLayout
+            title="E-posta doğrulama"
+            description="Lütfen size gönderdiğimiz e-postadaki bağlantıya tıklayarak e-posta adresinizi doğrulayın."
+        >
+            <Head title="E-posta doğrulama" />
 
-            {status === 'verification-link-sent' && (<div className="mb-4 text-center text-sm font-medium text-green-600">
-                    A new verification link has been sent to the email address you provided during registration.
-                </div>)}
+            {status === 'verification-link-sent' && (
+                <div className="mb-4 text-center text-sm font-medium text-green-600">
+                    Kayıt sırasında verdiğiniz e-posta adresine yeni bir doğrulama bağlantısı gönderildi.
+                </div>
+            )}
 
             <form onSubmit={submit} className="space-y-6 text-center">
                 <Button disabled={processing} variant="secondary">
-                    {processing && <LoaderCircle className="h-4 w-4 animate-spin"/>}
-                    Resend verification email
+                    {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+                    Doğrulama e-postasını tekrar gönder
                 </Button>
 
                 <TextLink href={route('logout')} method="post" className="mx-auto block text-sm">
-                    Log out
+                    Çıkış yap
                 </TextLink>
             </form>
-        </AuthLayout>);
+        </AuthLayout>
+    );
 }
-
